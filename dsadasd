@@ -1,0 +1,184 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <math.h>
+#include <string.h>
+#include <conio.h>
+
+
+/*int main(){
+
+float num1, num2;
+char simbolo[2];
+int menu(float x, float y);
+
+printf("Digite 2 valores para realizar uma operacao: ");
+scanf("%f%f", &num1, &num2);
+
+menu(num1,num2);
+}
+
+int menu(float x, float y){
+char soma[2] = "+\0",sub[2] = "-\0",mult[2] = "*\0", div[2] = "/\0";
+char c[2];
+
+printf("Escolha a operacao: ");
+printf("\n(+) soma\n(-) subtracao\n(*) multi\n(/) divi\n");
+printf("\nEscolha:");
+setbuf(stdin,NULL);
+scanf("%s", &c);
+
+
+
+if(strcmp(c,soma) == 0)
+    printf("%f", x + y);
+    else if(strcmp(c,sub) == 0)
+        printf("%f", x - y);
+        else if(strcmp(c,mult) == 0)
+            printf("%f", x * y);    
+            else if(strcmp(c,div) == 0)
+                printf("%f", x / y);
+                else
+                    printf("escolha invalida");
+
+}
+
+
+int main(){
+
+float num1, num2;
+char simbolo[2];
+int menu(float x, float y,char *c);
+
+printf("Digite 2 valores para realizar uma operacao: ");
+scanf("%f%f", &num1, &num2);
+
+printf("Escolha a operacao: ");
+printf("\n(+) soma\n(-) subtracao\n(*) multi\n(/) divi\n");
+printf("\nEscolha:");
+setbuf(stdin,NULL);
+scanf("%s", &simbolo);
+
+
+menu(num1,num2,&simbolo);
+}
+
+int menu(float x, float y, char *c){
+char soma[2] = "+\0",sub[2] = "-\0",mult[2] = "*\0", div[2] = "/\0";
+
+
+if(strcmp(c,soma) == 0)
+    printf("%f", x + y);
+    else if(strcmp(c,sub) == 0)
+        printf("%f", x - y);
+        else if(strcmp(c,mult) == 0)
+            printf("%f", x * y);    
+            else if(strcmp(c,div) == 0)
+                printf("%f", x / y);
+                else
+                    printf("escolha invalida");
+
+}/*
+Q11
+
+int main(){
+int num1,num2;
+int potencia(int x, int y);
+
+scanf("%i%i", &num1, &num2);
+
+printf("%i", potencia(num1,num2));
+
+
+}
+int potencia(int x, int y){
+int i;
+for(i = 2; i <= y; i++)
+    x *= x;
+return x;
+}
+Q12
+
+int main(){
+int n, resultado;
+int somatorio(int x);
+
+printf("Escolha quantas vezes: ");
+scanf("%i", &n);
+resultado = somatorio(n);
+printf("%i", resultado);
+}
+
+int somatorio(int x){
+int i, resultado = 0;
+
+for(i = 0; i <= x; i++)
+resultado = resultado + i;  
+return resultado;
+}
+*/
+//9) Crie uma estrutura representando um aluno de uma disciplina. Essa estrutura deve conter o número de matrícula do aluno, seu nome e as nota1 de três provas.
+// Agora, escreva uma função que receba um vetor de tamanho N dessa estrutura. 
+//Essa função deve retornar o índice do aluno que possui a maior média geral entre todos os alunos.
+
+struct alunos{
+char nome[40], matricula[40];
+float nota1, nota2, nota3;
+};
+
+int main(){
+    struct alunos v[5];
+    int quantidadealunos, indice;
+    void mediaindiv(struct alunos *v, int x,float *mediaindividual);
+    int calcularQuantidade(struct alunos *v, int x);
+
+    printf("Quantos alunos vao ser? ");
+    scanf("%i", &quantidadealunos);
+    int i, l=0;
+
+    for(i = 0 ; i < quantidadealunos ; i++){
+        setbuf(stdin,NULL);
+        l++;
+
+        printf("Digite o nome e a matricula do %i aluno: ", l);
+
+        setbuf(stdin,NULL);
+        gets(v[i].nome);
+
+        setbuf(stdin,NULL);
+        gets(v[i].matricula);
+
+        printf("Digite as 3 nota do %i aluno: ", l);
+        scanf("%f%f%f", &v[i].nota1, &v[i].nota2, &v[i].nota3);
+    }
+
+
+    indice = calcularQuantidade(v,quantidadealunos);
+
+    printf("A maior media eh: %i", indice);
+
+}
+
+void mediaindiv(struct alunos *v, int x,float *mediaindividual){
+int i;
+
+for(i=0; i < x; i++){
+
+mediaindividual[i] = (float)(v[i].nota1 + v[i].nota2 + v[i].nota3) / 3;
+
+}
+}
+
+int calcularQuantidade(struct alunos *v, int x){
+void mediaindiv(struct alunos *v, int x,float *mediaindividual);
+float *media[x];
+mediaindiv(v,x,&media);
+int i, maior = *media[0], indice = 0;
+for(i = 0; i < x; i++){
+    if(maior < *media[x]){
+        maior = *media[x];
+        indice = i;
+}
+return maior;
+}
+}
