@@ -1,0 +1,62 @@
+//9) Crie uma estrutura representando um aluno de uma disciplina. Essa estrutura deve conter o número de matrícula do aluno, seu nome e as nota1 de três provas.
+// Agora, escreva uma função que receba um vetor de tamanho N dessa estrutura. 
+//Essa função deve retornar o índice do aluno que possui a maior média geral entre todos os alunos.
+
+struct alunos{
+
+char nome[40], matricula[40];
+float nota1, nota2, nota3;
+}v[5];
+
+int main(){
+int quantidadealunos, indice;
+int mediaindiv(struct alunos *v, int x,float *mediaindividual);
+int calcularQuantidade(struct alunos *v, int x);
+
+printf("Quantos alunos vao ser? ");
+scanf("%i", &quantidadealunos);
+int i, l=0;
+
+
+for(i = 0 ; i < quantidadealunos ; i++){
+setbuf(stdin,NULL);
+l++;
+printf("Digite o nome e a matricula do %i aluno: ", l);
+setbuf(stdin,NULL);
+gets(v[i].nome);
+setbuf(stdin,NULL);
+gets(v[i].matricula);
+printf("Digite as 3 nota do %i aluno: ", l);
+scanf("%f%f%f", &v[i].nota1, &v[i].nota2, &v[i].nota3);
+}
+
+
+indice = calcularQuantidade(v,quantidadealunos);
+
+printf("A maior media eh: %i", indice);
+
+}
+
+int mediaindiv(struct alunos *v, int x,float *mediaindividual){
+int i; 
+
+for(i=0; i < x; i++){
+
+mediaindividual[i] = (float)(v[i].nota1 + v[i].nota2 + v[i].nota3) / 3;
+
+}
+}
+
+int calcularQuantidade(struct alunos *v, int x){
+
+float media[x];
+mediaindiv(v,x,&media);
+int i, maior = media[0], indice = 0;
+for(i = 0; i < x; i++){
+    if(maior < media[x]){
+        maior = media[x];
+        indice = i;
+}
+return maior;
+}
+}
